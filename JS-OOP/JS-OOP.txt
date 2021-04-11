@@ -1,0 +1,4 @@
+Encapsulation - group related functions and variables together - Reduce complexity & increase reusability
+Abstraction - hide details & complexity and only show the essentials - Reduce complexity & isolate impact of changes in the code
+Inheritance - eliminate redundant code
+Polymorphism - refactor ugly switch/case statements
