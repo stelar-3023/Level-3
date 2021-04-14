@@ -59,9 +59,24 @@ function personFactory(name) {
   return {
     name,
     talk() {
-      return `Hello I am ${name}`
-    }
-  }
+      return `Hello I am ${name}`;
+    },
+  };
 }
-const person = personFactory("Steve")
-console.log(person.talk())
+const person = personFactory("Steve");
+console.log(person.talk());
+
+const fetchUsers = fetch("./users.json");
+const fetchColors = fetch("./colors.json");
+
+Promise.all([fetchUsers, fetchColors])
+  .then((values) => {
+    return Promise.all(values.map((response) => response.json()));
+  })
+  .then(([users, colors]) => { // array destructuring
+    console.log(users);
+    console.log(colors);
+  }).catch(err => {
+    console.log("Found an error!");
+    console.log(err)
+  })
