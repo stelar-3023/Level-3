@@ -73,10 +73,39 @@ Promise.all([fetchUsers, fetchColors])
   .then((values) => {
     return Promise.all(values.map((response) => response.json()));
   })
-  .then(([users, colors]) => { // array destructuring
+  .then(([users, colors]) => {
+    // array destructuring
     console.log(users);
     console.log(colors);
-  }).catch(err => {
-    console.log("Found an error!");
-    console.log(err)
   })
+  .catch((err) => {
+    console.log("Found an error!");
+    console.log(err);
+  });
+
+// First
+const getCovidData = async () => {
+  console.log("Processing...");
+  const request = await fetch("https://covid19.mathdro.id/api");
+  const data = await request.json();
+  return data;
+};
+
+// Second
+const getMoreAPIDataWithUrl = async () => {
+  const request = await fetch("https://covid19.mathdro.id/api/confirmed");
+  const data = await request.json();
+  return data;
+};
+
+const callDataInOrder = async () => {
+  const covidData = await getCovidData();
+  console.log("covid data", covidData)
+  document.getElementById("total-cases").innerText = covidData.confirmed.value;
+  const detailData = await getMoreAPIDataWithUrl(covidData.confirmed.detail);
+  console.log("detail data", detailData);
+  document.getElementById("country").innerText = detailData[0].countryRegion
+  document.getElementById("confirmed").innerText = detailData[0].confirmed
+}
+
+callDataInOrder();

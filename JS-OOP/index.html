@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <!-- <script src="index.js"></script> -->
-  <script type="module" src="main.js"></script>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script src="index.js"></script> -->
+    <script type="module" src="main.js"></script>
+  </head>
+  <style>
+    body {
+      background-color: #f3f4f6;
+    }
+
+    #container {
+      padding: 30px;
+      background-color: white;
+      margin: 20px;
+      box-shadow: 0 0 3px 3px #dad0d0;
+    }
+
+    #container > h2,
+    h3 {
+      color: black;
+    }
+
+    #container > h2 {
+      font-size: 2em;
+      color: red;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <h3>Total Covid Cases</h3>
+      <h2 id="total-cases"></h2>
+      <h3 id="country"></h3>
+      <h2 id="confirmed"></h2>
+    </div>
+  </body>
 </html>
