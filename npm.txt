@@ -1,0 +1,8 @@
+npm install package name -g - globally
+npm install package name - locally
+npm init - initialize a new application
+npm update package name
+npm uninstall package name
+
+npm security audit - ensure package contains package.json and package-lock.json / npm audit
+npm audit fix

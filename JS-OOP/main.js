@@ -100,12 +100,30 @@ const getMoreAPIDataWithUrl = async () => {
 
 const callDataInOrder = async () => {
   const covidData = await getCovidData();
-  console.log("covid data", covidData)
+  console.log("covid data", covidData);
   document.getElementById("total-cases").innerText = covidData.confirmed.value;
   const detailData = await getMoreAPIDataWithUrl(covidData.confirmed.detail);
+  console.log(typeof detailData);
   console.log("detail data", detailData);
-  document.getElementById("country").innerText = detailData[0].countryRegion
-  document.getElementById("confirmed").innerText = detailData[0].confirmed
-}
+  //document.getElementById("country").innerText = detailData[0]["countryRegion"];
+  //document.getElementById("confirmed").innerText = detailData[0].confirmed;
+  const countryData = detailData.map((element) => {
+    return { country: element.countryRegion, cases: element.confirmed };
+  });
+  console.log(countryData);
+  let result = [];
+  countryData.reduce(function (res, value) {
+    if (!res[value.country]) {
+      res[value.country] = { country: value.country, cases: 0 };
+      result.push(res[value.country]);
+    }
+    res[value.country].cases += value.cases;
+    return res;
+  }, {});
+  console.log(typeof result);
+  console.log(result);
+  document.getElementById("country").innerText = result[0].country;
+  document.getElementById("confirmed").innerText = result[0].cases;
+};
 
 callDataInOrder();
