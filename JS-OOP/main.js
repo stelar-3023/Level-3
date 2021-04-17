@@ -4,6 +4,21 @@ import { square, diag } from "./lib.js";
 console.log(square(11));
 console.log(diag(4, 3));
 
+//create object
+let dog = {
+  name: "Apollo",
+  numLegs: 4,
+  sayLegs: function () {
+    return "This dog has " + /*dog.numLegs*/ this.numLegs + " legs.";
+  },
+};
+console.log(dog);
+console.log(dog.name);
+console.log(dog.numLegs);
+console.log(dog.sayLegs());
+
+// Constructor Function
+
 // Classes and Object Constructors
 class House {
   constructor(color) {
@@ -122,8 +137,8 @@ const callDataInOrder = async () => {
   }, {});
   console.log(typeof result);
   console.log(result);
-  document.getElementById("country").innerText = result[0].country;
-  document.getElementById("confirmed").innerText = result[0].cases;
+  document.getElementById("country").innerText = result[11].country;
+  document.getElementById("confirmed").innerText = result[11].cases;
 };
 
 callDataInOrder();
