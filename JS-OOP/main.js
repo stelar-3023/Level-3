@@ -18,25 +18,99 @@ console.log(dog.numLegs);
 console.log(dog.sayLegs());
 
 // Constructor Function
+// function Dog() {
+//   (this.name = "Apollo"), (this.color = "tan"), (this.numLegs = 4);
+// }
+// let myDog = new Dog();
+// console.log(myDog);
+// console.log(myDog.name);
+// console.log(myDog.color);
 
-// Classes and Object Constructors
-class House {
-  constructor(color) {
-    this.color = color;
-  }
-  getFurniture() {
-    return "sofa";
+//Extend Constructors to Receive Arguments
+// function Dog(name, color) {
+//   this.name = name;
+//   this.color = color;
+//   this.numLegs = 4;
+// }
+// let terrier = new Dog("Peanut", "white");
+// console.log(terrier);
+// console.log(terrier.name);
+// console.log(terrier.color);
+
+// Verify an Object's Constructor with instanceOf
+function House(numBedrooms) {
+  this.numBedrooms = numBedrooms;
+}
+// without constructor
+// let myHouse = {
+//   numBedrooms: 6,
+// };
+// with constructor
+let myHouse = new House(4);
+console.log(myHouse instanceof House);
+
+// Understand Own Properties
+// function Bird(name) {
+//   this.name = name;
+//   this.numLegs = 2;
+// }
+
+// let canary = new Bird("Tweety");
+// let ownProps = [];
+// Only change code below this line
+// for (let property in canary) {
+//   if (canary.hasOwnProperty(property)) {
+//     ownProps.push(property);
+//   }
+// }
+// console.log(ownProps);
+
+// Use Prototype Properties to Reduce Duplicate Code
+function Dog(name) {
+  this.name = name;
+  Dog.prototype.numLegs = 4;
+}
+let beagle = new Dog("Snoopy");
+console.log(beagle);
+console.log(beagle.numLegs);
+
+// Iterate Over All Properties
+function Bird(name) {
+  this.name = name; // own property
+}
+Bird.prototype.numLegs = 2;
+
+let duck = new Bird("Donald");
+let ownProps = [];
+let prototypeProps = [];
+for (let property in duck) {
+  if (duck.hasOwnProperty(property)) {
+    ownProps.push(property);
+  } else {
+    prototypeProps.push(property);
   }
 }
+console.log(ownProps);
+console.log(prototypeProps);
 
-const houseObject = new House("red");
-const houseObject2 = new House("blue");
+// Classes and Object Constructors
+// class House {
+//   constructor(color) {
+//     this.color = color;
+//   }
+//   getFurniture() {
+//     return "sofa";
+//   }
+// }
 
-console.log(houseObject.color);
-console.log(houseObject.getFurniture());
+// const houseObject = new House("red");
+// const houseObject2 = new House("blue");
 
-console.log(houseObject2.color);
-console.log(houseObject2.getFurniture());
+// console.log(houseObject.color);
+// console.log(houseObject.getFurniture());
+
+// console.log(houseObject2.color);
+// console.log(houseObject2.getFurniture());
 
 // Prototypes
 const dude = {
