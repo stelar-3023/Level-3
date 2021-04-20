@@ -66,32 +66,192 @@ console.log(myHouse instanceof House);
 // console.log(ownProps);
 
 // Use Prototype Properties to Reduce Duplicate Code
-function Dog(name) {
-  this.name = name;
-  Dog.prototype.numLegs = 4;
-}
-let beagle = new Dog("Snoopy");
-console.log(beagle);
-console.log(beagle.numLegs);
+// function Dog(name) {
+//   this.name = name;
+//   Dog.prototype.numLegs = 4;
+// }
+// let beagle = new Dog("Snoopy");
+// console.log(beagle);
+// console.log(beagle.numLegs);
 
 // Iterate Over All Properties
-function Bird(name) {
-  this.name = name; // own property
-}
-Bird.prototype.numLegs = 2;
+// function Bird(name) {
+//   this.name = name; // own property
+// }
+// Bird.prototype.numLegs = 2;
 
-let duck = new Bird("Donald");
-let ownProps = [];
-let prototypeProps = [];
-for (let property in duck) {
-  if (duck.hasOwnProperty(property)) {
-    ownProps.push(property);
-  } else {
-    prototypeProps.push(property);
-  }
-}
-console.log(ownProps);
-console.log(prototypeProps);
+// let duck = new Bird("Donald");
+// let ownProps = [];
+// let prototypeProps = [];
+// for (let property in duck) {
+//   if (duck.hasOwnProperty(property)) {
+//     ownProps.push(property);
+//   } else {
+//     prototypeProps.push(property);
+//   }
+// }
+// console.log(ownProps);
+// console.log(prototypeProps);
+// console.log(Object.keys(duck));
+
+// Understand the Constructor Property
+// function Cat(name) {
+//   this.name = name;
+// }
+// let persian = new Cat();
+// console.log(persian.constructor);
+// console.log(persian.constructor === Cat);
+// function joinCatFraternity(candidate) {
+//   if (candidate.constructor === Cat) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+
+// Change the Prototype to a New Object
+// function Cat(name) {
+//   this.name = name;
+// }
+
+// Cat.prototype = {
+//   numLegs: 4,
+//   eat: function() {
+//     console.log("yum yum yum")
+//   },
+//   describe: function() {
+//     console.log("My name is " + this.name);
+//   }
+// }
+// console.log(Cat.prototype)
+
+// Set the Constructor Property when Changing the Prototype - define the constructor property
+// function Dog(name) {
+//   this.name = name;
+// }
+// Dog.prototype = {
+//   constructor: Dog,
+//   numLegs: 4,
+//   eat: function () {
+//     console.log("yum yum yum");
+//   },
+//   describe: function () {
+//     console.log("My name is " + this.name);
+//   },
+// };
+// console.log(Dog);
+// console.log(Dog.prototype);
+
+// // Understand Where an Object's Prototype Comes From
+// function Cat(name) {
+//   this.name = name;
+// }
+// let tabby = new Cat("Hello Kitty");
+// console.log(tabby);
+// console.log(Cat.prototype.isPrototypeOf(tabby));
+// console.log(typeof(Cat.prototype))
+// console.log(Object.prototype.isPrototypeOf(Cat.prototype)) // Object.prototype is the prototype of Cat.prototype
+
+// Use Inheritance So You Don't Repeat Yourself
+// function Cat(name) {
+//   this.name = name;
+// }
+
+// Cat.prototype = {
+//   constructor: Cat,
+//   // eat: function() {
+//   //   console.log("nom nom nom");
+//   // }
+// };
+
+// function Bear(name) {
+//   this.name = name;
+// }
+
+// Bear.prototype = {
+//   constructor: Bear,
+//   // eat: function() {
+//   //   console.log("nom nom nom");
+//   // }
+// };
+
+// function Animal() {}
+
+// Animal.prototype = {
+//   constructor: Animal,
+//   eat: function () {
+//     console.log("nom nom nom");
+//   },
+// };
+// console.log(Animal.prototype);
+
+// Inherit Behaviors from a Supertype
+
+// function Animal() {}
+// Animal.prototype = {
+//   constructor: Animal,
+//   eat: function () {
+//     console.log("nom nom nom");
+//   },
+// };
+// let seagull = Object.create(Animal.prototype);
+// let minpin = Object.create(Animal.prototype);
+// console.log(seagull);
+// console.log(minpin);
+
+// Set the Child's Prototype to an Instance of the Parent
+// function Animal() {}
+
+// Animal.prototype = {
+//   constructor: Animal,
+//   eat: function () {
+//     console.log("nom nom nom");
+//   },
+// };
+
+// function Dog() {}
+
+// // Only change code below this line
+// Dog.prototype = Object.create(Animal.prototype)
+// let beagle = new Dog();
+// console.log(beagle)
+
+// Reset an Inherited Constructor Property
+// function Animal() {}
+// function Bird() {}
+// function Dog() {}
+
+// Bird.prototype = Object.create(Animal.prototype);
+// Dog.prototype = Object.create(Animal.prototype);
+
+// // Only change code below this line
+// Bird.prototype.constructor = Bird;
+// Dog.prototype.constructor = Dog;
+// console.log(Bird.constructor);
+// console.log(Dog.constructor);
+
+// let duck = new Bird();
+// let beagle = new Dog();
+
+// Add Methods After Inheritance
+// function Animal() {}
+// Animal.prototype.eat = function () {
+//   console.log("nom nom nom");
+// };
+
+// function Dog() {}
+
+// // Only change code below this line
+// Dog.prototype = Object.create(Animal.prototype);
+// Dog.prototype.constructor = Dog;
+
+// Dog.prototype.bark = function () {
+//   console.log("Woof!");
+// };
+// // Only change code above this line
+// let beagle = new Dog();
+// beagle.eat();
+// beagle.bark();
 
 // Classes and Object Constructors
 // class House {
